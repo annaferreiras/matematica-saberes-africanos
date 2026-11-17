@@ -1,0 +1,823 @@
+<title>Saberes Africanos</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,300..800&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700&family=DM+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: página escura de rolagem única. Faixa kente (vermelho, ouro, verde, preto) separa as seções; cada seção tem um desenho próprio (tabuleiro, símbolo ou construção). */
+:root {
+  --ink: #0f0a07;
+  --ink-2: #1a120d;
+  --ink-3: #261a12;
+  --line: #3d2c1f;
+  --red: #c9302c;
+  --red-deep: #8e1b17;
+  --gold: #f0b429;
+  --gold-deep: #c98a12;
+  --green: #3e9142;
+  --green-deep: #1f5a28;
+  --clay: #b5582b;
+  --ochre: #c98a2b;
+  --brown: #6b4328;
+  --cream: #f4ead7;
+  --muted: #bba88f;
+  --display: "Bricolage Grotesque", "Arial Narrow", "Helvetica Neue", Arial, sans-serif;
+  --body: "DM Sans", "Helvetica Neue", Arial, sans-serif;
+  --mono: "DM Mono", ui-monospace, Menlo, Consolas, monospace;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 76px; }
+body {
+  margin: 0;
+  background: var(--ink);
+  color: var(--cream);
+  font-family: var(--body);
+  font-size: 17px;
+  line-height: 1.6;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+}
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 30; background: var(--ink); }
+a { color: var(--gold); text-underline-offset: 3px; }
+a:focus-visible, button:focus-visible { outline: 3px solid var(--gold); outline-offset: 3px; }
+h1, h2, h3, h4 { font-family: var(--display); font-weight: 800; line-height: 1.04; letter-spacing: -0.015em; margin: 0; text-wrap: balance; }
+p { margin: 0; }
+.wrap { max-width: 1160px; margin-inline: auto; }
+.eyebrow { font-family: var(--mono); font-size: 12.5px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gold); }
+
+/* faixa kente */
+.kente { height: 12px; margin-inline: calc(-1 * max(16px, env(safe-area-inset-left, 0px))); background:
+  repeating-linear-gradient(90deg, var(--red) 0 48px, var(--gold) 48px 96px, var(--green) 96px 144px, #000 144px 192px); }
+.kente.thin { height: 6px; }
+
+/* nav */
+header.nav { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 20; background: color-mix(in srgb, var(--ink) 94%, transparent); border-bottom: 1px solid var(--line); margin-inline: calc(-1 * max(16px, env(safe-area-inset-left, 0px))); padding-inline: max(16px, env(safe-area-inset-left, 0px)); }
+.nav .wrap { display: flex; align-items: center; gap: 24px; height: 58px; }
+.brand { font-family: var(--display); font-weight: 800; font-size: 19px; color: var(--cream); text-decoration: none; white-space: nowrap; display: flex; align-items: center; gap: 10px; }
+.brand i { width: 14px; height: 14px; background: var(--gold); border-radius: 50%; box-shadow: 0 0 0 4px var(--red) inset; display: inline-block; }
+.nav nav { min-width: 0; flex: 1 1 auto; }
+.nav ul { list-style: none; display: flex; gap: 4px; margin: 0; padding: 0; overflow-x: auto; scrollbar-width: none; }
+.nav ul::-webkit-scrollbar { display: none; }
+.nav li a { display: block; padding: 8px 12px; color: var(--muted); font-size: 14px; text-decoration: none; border-radius: 6px; white-space: nowrap; }
+.nav li a:hover { color: var(--gold); background: var(--ink-2); }
+
+/* hero */
+.hero { padding-block: 64px 72px; display: grid; grid-template-columns: minmax(0, 1.12fr) minmax(0, 0.88fr); gap: 48px; align-items: center; }
+.hero h1 { font-size: clamp(2.6rem, 6.6vw, 5.4rem); font-stretch: 82%; font-variation-settings: "wdth" 82; }
+.hero h1 em { font-style: normal; color: var(--gold); }
+.hero .lead { margin-top: 24px; font-size: 1.15rem; color: #e2d4bc; max-width: 54ch; }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 28px; padding: 0; list-style: none; }
+.chips a { display: inline-block; padding: 7px 14px; border: 1.5px solid var(--gold-deep); color: var(--gold); border-radius: 999px; font-size: 14px; text-decoration: none; }
+.chips a:hover { background: var(--gold); color: var(--ink); }
+.hero-art { width: 100%; max-width: 480px; justify-self: center; }
+.hero-art svg { width: 100%; height: auto; display: block; }
+
+/* secções */
+section { padding-block: 84px; }
+.sec-head { max-width: 760px; margin-bottom: 40px; }
+.sec-head h2 { font-size: clamp(2rem, 4.6vw, 3.4rem); font-variation-settings: "wdth" 85; }
+.sec-head p { margin-top: 16px; color: #dccdb4; font-size: 1.06rem; max-width: 62ch; }
+.alt { background: var(--ink-2); margin-inline: calc(-1 * max(16px, env(safe-area-inset-left, 0px))); padding-inline: max(16px, env(safe-area-inset-left, 0px)); }
+
+/* visão geral */
+.overview { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 250px), 1fr)); gap: 14px; }
+.ov { display: flex; flex-direction: column; gap: 10px; padding: 20px; background: var(--ink-2); border: 1px solid var(--line); border-top: 5px solid var(--c, var(--gold)); text-decoration: none; color: var(--cream); min-width: 0; }
+.ov:hover { background: var(--ink-3); }
+.ov h3 { font-size: 1.4rem; }
+.ov dl { margin: 0; display: grid; gap: 8px; font-size: 14.5px; }
+.ov dt { font-family: var(--mono); font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); }
+.ov dd { margin: 0; color: #e6d9c2; }
+
+/* duas colunas genéricas */
+.cols { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr)); gap: 40px; align-items: start; }
+.prose { display: grid; gap: 16px; max-width: 62ch; min-width: 0; }
+.prose h3 { font-size: 1.5rem; margin-top: 10px; }
+.prose ul, .prose ol { margin: 0; padding-left: 1.2em; display: grid; gap: 8px; }
+.prose li::marker { color: var(--gold); }
+.callout { padding: 18px 20px; background: var(--ink-3); border-left: 5px solid var(--red); font-size: 0.98rem; }
+.callout b { color: var(--gold); }
+.fig { background: var(--ink-3); border: 1px solid var(--line); padding: 18px; min-width: 0; }
+.fig figcaption { font-size: 13.5px; color: var(--muted); margin-top: 12px; }
+.fig svg { width: 100%; height: auto; display: block; }
+.tag { display: inline-block; font-family: var(--mono); font-size: 11.5px; letter-spacing: 0.08em; text-transform: uppercase; padding: 3px 9px; border-radius: 4px; background: var(--green-deep); color: #e7f5e5; }
+.tag.red { background: var(--red-deep); color: #ffe6e3; }
+.tag.gold { background: var(--gold); color: var(--ink); }
+
+/* mancala */
+.board { display: grid; gap: 8px; padding: 14px; background: linear-gradient(160deg, var(--brown), #4a2d1a); border: 2px solid #8a5a38; border-radius: 18px; }
+.board .row { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 8px; }
+.pit { aspect-ratio: 1; border-radius: 50%; background: #2a170c; box-shadow: inset 0 4px 10px #000a, 0 0 0 2px #7a4e2e; position: relative; display: flex; flex-wrap: wrap; align-content: center; justify-content: center; gap: 3px; padding: 18%; }
+.pit .seed { width: 11px; height: 11px; border-radius: 50%; background: var(--gold); box-shadow: inset -2px -2px 0 var(--gold-deep); }
+.pit .n { position: absolute; right: 6px; bottom: 3px; font-family: var(--mono); font-size: 11px; color: #e9cf9a; }
+.pit.src { box-shadow: inset 0 4px 10px #000a, 0 0 0 3px var(--red); }
+.pit.dst { box-shadow: inset 0 4px 10px #000a, 0 0 0 3px var(--gold); }
+.board-label { font-family: var(--mono); font-size: 12px; color: var(--muted); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 8px; }
+.stack { display: grid; gap: 26px; min-width: 0; }
+
+/* adinkra */
+.adinkra { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 250px), 1fr)); gap: 14px; }
+.glyph { background: var(--ink-3); border: 1px solid var(--line); padding: 20px; display: grid; gap: 12px; align-content: start; min-width: 0; }
+.glyph svg { width: 84px; height: 84px; background: #000; border-radius: 10px; padding: 8px; }
+.glyph svg * { fill: none; stroke: var(--gold); stroke-width: 6; stroke-linecap: round; stroke-linejoin: round; }
+.glyph svg .fillme { fill: var(--gold); stroke: none; }
+.glyph h3 { font-size: 1.3rem; }
+.glyph .sig { color: #e6d9c2; font-size: 15.5px; }
+.glyph .mat { font-size: 14px; color: var(--muted); border-top: 1px dashed var(--line); padding-top: 10px; }
+.glyph .mat b { color: var(--green); font-family: var(--mono); font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; display: block; margin-bottom: 2px; }
+.glyph .mat b { color: #7fcf83; }
+
+/* arquitetura */
+.arch { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 330px), 1fr)); gap: 16px; }
+.build { background: var(--ink-2); border: 1px solid var(--line); display: grid; grid-template-rows: auto 1fr; min-width: 0; }
+.build .pic { background: var(--ink-3); padding: 18px 18px 0; border-bottom: 4px solid var(--c, var(--clay)); }
+.build .pic svg { width: 100%; max-width: 260px; height: auto; display: block; margin-inline: auto; }
+.build .body { padding: 20px; display: grid; gap: 10px; align-content: start; }
+.build h3 { font-size: 1.35rem; }
+.build .where { font-family: var(--mono); font-size: 12px; color: var(--gold); letter-spacing: 0.06em; text-transform: uppercase; }
+.build p { font-size: 15.5px; color: #e2d4bc; }
+.build .mat { font-size: 14px; color: var(--muted); border-top: 1px dashed var(--line); padding-top: 10px; }
+.build .mat b { font-family: var(--mono); font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: #7fcf83; display: block; margin-bottom: 2px; }
+
+/* jogos */
+.games { display: grid; gap: 28px; }
+.game { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 36px; align-items: center; padding: 28px; background: var(--ink-2); border: 1px solid var(--line); }
+.game:nth-child(even) .fig { order: -1; }
+.game h3 { font-size: clamp(1.8rem, 3.4vw, 2.5rem); font-variation-settings: "wdth" 85; }
+.facts { display: flex; flex-wrap: wrap; gap: 8px; margin: 14px 0 18px; padding: 0; list-style: none; }
+.facts li { font-family: var(--mono); font-size: 12px; padding: 4px 10px; border: 1px solid var(--line); border-radius: 4px; color: #e6d9c2; }
+.game ol { margin: 14px 0; padding-left: 1.2em; display: grid; gap: 6px; font-size: 15.5px; }
+.game ol li::marker { color: var(--gold); font-weight: 700; }
+.game .mathline { margin-top: 14px; padding: 12px 14px; background: var(--ink-3); border-left: 5px solid var(--green); font-size: 14.5px; }
+.game .mathline b { color: #7fcf83; }
+
+/* egito */
+.egy { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr)); gap: 14px; }
+.egy article { padding: 22px; background: var(--ink-3); border: 1px solid var(--line); border-top: 6px solid var(--c); display: grid; gap: 12px; align-content: start; min-width: 0; }
+.egy h3 { font-size: 1.5rem; }
+.egy ul { margin: 0; padding-left: 1.1em; display: grid; gap: 8px; font-size: 15.5px; color: #e6d9c2; }
+.egy li::marker { color: var(--c); }
+.timeline { margin-top: 36px; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 200px), 1fr)); gap: 0; border-top: 3px solid var(--gold); }
+.timeline div { padding: 16px 16px 0 0; position: relative; }
+.timeline div::before { content: ""; position: absolute; top: -9px; left: 0; width: 15px; height: 15px; border-radius: 50%; background: var(--red); border: 3px solid var(--ink-2); }
+.timeline b { display: block; font-family: var(--display); font-size: 1.15rem; color: var(--gold); padding-top: 8px; }
+.timeline span { font-size: 14.5px; color: #dccdb4; }
+
+/* sala de aula */
+.laws { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 250px), 1fr)); gap: 14px; }
+.law { padding: 20px; background: var(--ink-2); border: 1px solid var(--line); display: grid; gap: 8px; align-content: start; }
+.law h3 { font-size: 1.25rem; color: var(--gold); }
+.law p { font-size: 15px; color: #e2d4bc; }
+.values { display: flex; flex-wrap: wrap; gap: 8px; margin: 18px 0 0; padding: 0; list-style: none; }
+.values li { padding: 7px 14px; border-radius: 999px; background: var(--green-deep); color: #e7f5e5; font-size: 14px; }
+.ask { display: grid; gap: 12px; padding: 0; margin: 0; list-style: none; counter-reset: q; }
+.ask li { counter-increment: q; padding: 16px 18px 16px 58px; background: var(--ink-3); position: relative; border-left: 5px solid var(--red); }
+.ask li::before { content: counter(q); position: absolute; left: 16px; top: 12px; font-family: var(--display); font-weight: 800; font-size: 1.7rem; color: var(--gold); }
+
+/* paleta */
+.palette { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 200px), 1fr)); gap: 0; border: 1px solid var(--line); }
+.sw { padding: 22px 18px 24px; display: grid; gap: 10px; align-content: start; min-height: 230px; }
+.sw h3 { font-size: 1.5rem; }
+.sw p { font-size: 14.5px; line-height: 1.5; }
+.sw.k { background: #000; color: var(--cream); }
+.sw.r { background: var(--red); color: #fff; }
+.sw.y { background: var(--gold); color: #1a1006; }
+.sw.g { background: var(--green); color: #fff; }
+.sw.e { background: linear-gradient(180deg, var(--ochre), var(--clay) 60%, var(--brown)); color: #fff; }
+.sw .hex { font-family: var(--mono); font-size: 12px; opacity: 0.85; }
+
+/* rodapé */
+footer { padding-block: 48px 64px; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr)); gap: 36px; font-size: 14.5px; color: var(--muted); }
+footer h4 { font-size: 1.05rem; color: var(--cream); margin-bottom: 10px; }
+footer ul { margin: 0; padding-left: 1.1em; display: grid; gap: 6px; }
+.group { margin-top: 14px; padding: 12px 14px; border: 1.5px dashed var(--gold-deep); color: var(--cream); }
+
+@media (max-width: 860px) {
+  .hero { grid-template-columns: minmax(0, 1fr); gap: 36px; padding-block: 40px 56px; }
+  .game { grid-template-columns: minmax(0, 1fr); padding: 20px; }
+  .game:nth-child(even) .fig { order: 0; }
+  section { padding-block: 60px; }
+  .nav .wrap { gap: 12px; }
+}
+/* mapa da África ao fundo do topo */
+.hero { position: relative; isolation: isolate; overflow: hidden; }
+.africa-map { position: absolute; z-index: -1; right: 0; top: 50%; height: 100%; width: auto; max-width: none; transform: translateY(-50%); pointer-events: none; }
+.africa-map path { fill: rgba(240, 180, 41, 0.05); stroke: var(--gold); stroke-width: 2.2; stroke-opacity: 0.38; stroke-linejoin: round; stroke-dasharray: 1; stroke-dashoffset: 0; animation: draw 5s ease-out 0.3s both; }
+@keyframes draw { from { stroke-dashoffset: 1; } to { stroke-dashoffset: 0; } }
+@media (max-width: 860px) { .africa-map { right: auto; left: 50%; transform: translate(-50%, -50%); width: 120%; height: auto; max-height: 100%; } .africa-map path { stroke-opacity: 0.28; } }
+/* detalhe do símbolo */
+.glyph { cursor: pointer; }
+.glyph .more { font-family: var(--mono); font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gold); margin-top: 2px; }
+.glyph:hover .more { text-decoration: underline; text-underline-offset: 4px; }
+.glyph:focus-visible { outline: 3px solid var(--gold); outline-offset: 3px; }
+dialog.dlg { width: min(660px, calc(100% - 32px)); max-height: calc(100% - 40px); padding: 0; border: 2px solid var(--gold); background: var(--ink-2); color: var(--cream); overflow: auto; }
+dialog.dlg::backdrop { background: rgba(0, 0, 0, 0.75); }
+.dlg-head { display: flex; gap: 18px; align-items: center; padding: 22px 64px 22px 24px; background: var(--ink-3); border-bottom: 4px solid var(--red); }
+.dlg-head svg { width: 76px; height: 76px; flex: none; background: #000; border-radius: 10px; padding: 8px; }
+.dlg-head svg * { fill: none; stroke: var(--gold); stroke-width: 6; stroke-linecap: round; stroke-linejoin: round; }
+.dlg-head svg .fillme { fill: var(--gold); stroke: none; }
+.dlg-head h3 { font-size: clamp(1.4rem, 4vw, 2rem); }
+.dlg-body { padding: 22px 24px 28px; display: grid; gap: 18px; }
+.dlg-body h4 { font-family: var(--mono); font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold); margin-bottom: 4px; font-weight: 500; }
+.dlg-body p { font-size: 16px; color: #e6d9c2; }
+.dlg-body .act { padding: 14px 16px; background: var(--ink-3); border-left: 5px solid var(--green); }
+.dlg-close { position: absolute; top: 12px; right: 12px; width: 40px; height: 40px; border: 2px solid var(--gold); background: var(--ink); color: var(--gold); font-size: 22px; line-height: 1; cursor: pointer; }
+.dlg-close:hover { background: var(--gold); color: var(--ink); }
+
+/* movimento */
+@keyframes spin { to { transform: rotate(360deg); } }
+@keyframes spinr { to { transform: rotate(-360deg); } }
+@keyframes breathe { 0%, 100% { transform: scale(1); opacity: 1; } 50% { transform: scale(1.14); opacity: 0.8; } }
+@keyframes rise { from { opacity: 0.2; transform: translateY(26px); } to { opacity: 1; transform: none; } }
+@keyframes slide { to { background-position: 192px 0; } }
+@keyframes pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.09); } }
+@keyframes hop { 0%, 15% { transform: translateX(0); } 45%, 85% { transform: translateX(120px); } 100% { transform: translateX(0); } }
+@keyframes vanish { 0%, 40% { opacity: 1; } 46%, 85% { opacity: 0; } 100% { opacity: 1; } }
+@keyframes march { to { stroke-dashoffset: -12; } }
+.kente { background-size: 192px 100%; background-repeat: repeat-x; animation: slide 14s linear infinite; }
+.spin, .spinr { transform-box: view-box; transform-origin: 50% 50%; }
+.spin { animation: spin 70s linear infinite; }
+.spinr { animation: spinr 110s linear infinite; }
+.breathe { transform-box: fill-box; transform-origin: center; animation: breathe 3.2s ease-in-out infinite; }
+.hop { animation: hop 6s ease-in-out infinite; }
+.vanish { animation: vanish 6s ease-in-out infinite; }
+.march { animation: march 0.8s linear infinite; }
+.hero .eyebrow, .hero h1, .hero .lead, .hero .chips { animation: rise 0.9s ease-out both; }
+.hero h1 { animation-delay: 0.12s; }
+.hero .lead { animation-delay: 0.26s; }
+.hero .chips { animation-delay: 0.4s; }
+.hero-art { animation: rise 1.1s ease-out 0.2s both; }
+.pit.dst { animation: pulse 2.4s ease-in-out infinite; }
+#boardB .row:last-child .pit.dst:nth-child(4) { animation-delay: 0s; }
+#boardB .row:last-child .pit.dst:nth-child(5) { animation-delay: 0.3s; }
+#boardB .row:last-child .pit.dst:nth-child(6) { animation-delay: 0.6s; }
+#boardB .row:first-child .pit.dst { animation-delay: 0.9s; }
+.pit.src { animation: pulse 2.4s ease-in-out infinite; }
+.glyph svg { transition: transform 0.3s ease; }
+.glyph:hover svg { transform: rotate(8deg) scale(1.08); }
+.ov, .glyph, .build { transition: border-color 0.2s ease, background 0.2s ease; }
+.glyph:hover, .build:hover { border-color: var(--gold-deep); }
+@supports (animation-timeline: view()) {
+  .ov, .glyph, .build, .game, .egy article, .law, .sw, .timeline div, .callout { animation: rise linear both; animation-timeline: view(); animation-range: entry 0% entry 40%; }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+  html { scroll-behavior: auto; }
+}
+</style>
+
+<header class="nav">
+  <div class="wrap">
+    <a class="brand" href="#topo"><i></i>Saberes Africanos</a>
+    <nav aria-label="Seções"><ul>
+      <li><a href="#etnomatematica">Afroetnomatemática</a></li>
+      <li><a href="#mancala">Mancala</a></li>
+      <li><a href="#adinkra">Adinkra</a></li>
+      <li><a href="#arquitetura">Arquitetura</a></li>
+      <li><a href="#jogos">Shisima, Yoté e Fanorona</a></li>
+      <li><a href="#egito">Egito</a></li>
+      <li><a href="#sala">Em sala</a></li>
+    </ul></nav>
+  </div>
+</header>
+
+<main id="topo">
+<div class="wrap">
+
+<div class="hero">
+  <svg class="africa-map" viewBox="0 0 600 640" aria-hidden="true" focusable="false"><path d="M485.4,371.6L481.6,381.8L482,386.5L487.3,389.6L487.6,391.7L485.3,396.7L485.8,399.3L485.3,403.3L488.1,408.5L491.6,416.8L494.6,418.6L495.9,422.4L495.6,430.7L496.6,438.2L496.9,451.4L498.4,455.6L495.9,461.7L492.7,467.7L487.4,473L479.9,476.3L470.6,480.5L461.3,489.8L458.1,491.4L452.3,497.6L448.9,499.7L448.2,505.9L452.1,512.6L453.7,517.8L453.9,520.5L455.3,520.1L455.1,528.8L453.7,533L455.7,534.5L454.5,538.3L451,541.5L444.2,544.6L434.3,549.5L430.6,552.9L431.4,556.8L433.5,557.4L432.8,562.3L430.7,569L429.7,576.8L427.6,581L421.9,585.8L420.3,587.2L416.8,592L414.5,596.9L409.8,603.8L400.5,613.8L394.7,619.7L388.4,624.1L379.8,628L375.6,628.5L374.5,631.3L369.5,629.8L365.4,631.7L356.5,629.8L351.5,631L348.1,630.5L339.6,634.4L332.5,636L327.4,639.8L323.6,640L320.1,636.4L317.3,636.2L313.8,631.8L313.4,633.2L312.3,630.5L312.4,624.7L309.7,618.1L312.3,616.3L312.1,608.8L306.7,599.8L302.6,591.7L302.5,591.7L296.6,579.4L290.5,572.3L287.3,565.5L285.4,556.5L283.4,549.9L280.6,535.9L280.4,525.1L279.4,520.2L276.2,516.6L271.9,509.2L267.6,498.7L265.8,493.2L259,484.7L258.5,478L262.5,476.4L267.5,474.9L272.8,475.2L277.7,479.1L279,478.5L312.5,478.1L318.2,482.3L338.2,483.5L353.3,479.9L348,474.5L342.4,467.5L342.8,440.4L360,440.5L359.3,437.6L360.5,434.4L359,430.4L360,426.3L359.1,423.7L355.3,423.2L350.2,424.5L346.6,424.3L344.6,425L345.1,415.1L342.3,411.9L341.7,406.8L342.9,401.8L341.2,398.6L341.1,393.3L331.1,393.4L331.8,390.4L327.5,390.4L327.1,391.9L322,392.2L319.9,397L318.7,399.1L314.1,397.9L311.4,399.1L305.9,399.8L302.8,395.4L300.9,392.7L298.5,387.7L296.5,381.6L272.1,381.4L269.2,382.4L266.8,382.3L263.4,383.4L262.2,380.8L264.3,380L264.6,376.3L265.9,374.2L268.9,372.5L265.9,369.6L263.4,371L260,374.6L253.3,365.8L244.8,357.5L239.3,350.6L234.3,342.1L234.6,339.4L236.4,336.7L238.4,330.7L240,324.6L238.5,323.3L241.3,314.1L242.5,307.6L239.3,302.1L235.5,300.7L233.9,297L231.7,295.8L231.8,293.5L223.3,296.5L220.1,296L217,297.9L210.4,297.7L205.9,292.5L203.2,286.5L197.4,281.1L191.1,281.2L183.9,281.1L177.1,282.1L170.4,283.9L157.4,288.7L152.9,291.6L145.4,294L138.1,291.6L134.3,291.7L128.5,290.1L123.2,290.2L113.5,291.6L107.7,294L99.6,297.1L97.9,296.9L95.8,296.9L87.3,293L79.8,286.7L72.7,282.1L67.2,276.8L64.9,276.1L59,272.8L54.7,268.3L53.3,265.3L52.3,259.1L48.6,254.2L45.4,250.9L43.3,249.8L41.3,248.1L40.3,244.4L39.1,242.6L36.7,241.2L32.3,237.7L28.8,237.1L26.9,234.7L27,233.5L24.5,231.7L23.9,229.9L22.6,223.4L23.6,219.6L20.2,213L16.1,209.9L19.7,208.3L23.7,202.3L25.7,197.9L25,193.3L27.3,189L28.3,180.8L27.4,172.2L26.4,167.9L27.2,163.5L25.1,159.3L20.7,155.5L21.1,151.8L21.5,147.6L24.6,145.2L27.3,140.6L26.8,137.5L29.7,131.2L34.3,125.4L37,124L39.2,118.7L39.4,113.8L42.4,108.1L47.9,104.7L53.1,95.3L53.3,95.2L57.4,91.6L65.1,90.5L71.6,84.1L75.8,81.6L82.7,73.7L80.6,61.7L83.7,53.4L84.8,48.2L90.2,41.6L98.4,37.1L104.5,33L110.1,22.6L112.7,16.4L118.8,16.4L123.7,20.7L131.6,20L140.1,22.2L143.7,22.3L146.8,28.8L147.3,34.9L150.2,45.3L152.4,47.4L150.8,51.2L140,52.8L136.3,56.4L131.5,57.3L131.2,64.4L121.5,68.2L118.3,73L111.6,75.6L103.4,77L90,84L90.1,95.1L90.1,95.8L89.9,97.5L121,119.8L148.8,139.5L176.7,158.9L178.7,163.1L183.8,165.6L187.6,167L187.7,172.6L196.9,171.7L208.5,167.8L232.4,150.5L260.7,133.4L257.1,127.8L250.6,123.6L246.7,125.3L243.8,120.2L243.5,116.3L238.6,109.6L241.9,105.7L241.2,99.9L242.2,94.8L241.6,90.6L243.1,82.9L242.6,78.5L239.9,70.1L236.4,52.8L231.3,48.8L231.3,46.4L224.5,40.6L223.8,33.1L228.9,27.5L230.8,19.2L229.5,9.5L231.2,4.2L240.2,0L246,1.2L245.7,6.5L252.7,2.7L253.3,4.7L249.2,9.7L249.1,14.4L252,17L250.9,25.7L245.5,30.8L247,36.2L251.3,36.4L253.4,41.1L256.5,42.6L266.2,46L269.7,45.2L276.6,46.8L287.5,51.2L291.4,59.8L298.8,61.7L310.4,65.7L319.2,70.5L323.3,68L327.2,63.6L325.3,56.2L327.9,51.4L333.8,46.8L339.6,45.5L350.7,47.5L353.5,51.9L356.6,51.9L359.2,53.6L367.4,54.8L369.5,58L380.4,57.8L388.4,60.3L396.6,63.2L400.4,64.7L406.8,61.6L410.2,58.9L417.4,58.1L423.3,59.3L425.6,64.1L427.5,60.9L434.1,63.2L440.5,63.8L444.6,61.3L449.2,75.3L450,77.8L447.7,81.6L445.9,88.7L443.7,93.6L441.8,95.2L439,92.2L435.3,88L429.4,74.5L428.5,75.3L432,85.3L437,94.7L443.3,109.1L446.3,114.1L449,119.3L456.4,129.3L454.8,130.9L455,136.8L464.6,144.8L466.1,146.6L468.8,155.3L466.9,156.9L468.1,166L471.2,176.4L474.3,178.6L478.8,181.8L483.6,191.8L485.9,199.7L490.4,203.9L501.7,212L506.3,216.8L510.8,221.7L513.4,224.6L517.4,227.2L519.4,229.8L519.1,233.3L514.4,235.3L517.9,237.6L520.6,239.2L522.2,242.7L526,246.2L530.1,246.2L537.8,244.1L546.8,243.1L554.1,240.5L558.2,239.9L561.2,238.4L565.9,238.1L568.5,237.9L572.3,236.7L576.7,235.8L580.6,232.9L583.7,232.9L583.9,235.2L583.2,240.1L583.2,244.5L581.4,247.6L579.1,256.7L575.1,266L570,276.6L562.9,288.8L555.9,298.1L546.2,309.3L537.9,316L525.6,324.2L517.9,330.5L508.8,340.5L506.9,344.9L505.1,346.8L499.3,350.1L497.2,353.6L494.1,354.2L493,360L490.3,363.4L488.7,368.9ZM370.3,481.8L368.8,481.1L364.1,483.1L361.6,483.1L356.4,486.5L353.2,483L340.5,486L334.3,486.3L334.1,517.6L325.9,517.9L325.9,544.2L328.2,545.5L333.1,554.2L332.3,559.8L334.1,563.1L340.1,562.1L344.2,558L348.1,555.2L350.1,550.8L354.2,548.7L357.6,549.8L361.6,552.4L368.3,552.8L373.6,550.7L374.4,547.9L375.9,543.5L380.4,542.8L382.8,539.4L385.6,533.4L393,526.6L404.7,520.1L399.4,516L393,514.7L390.6,509.1L390.6,506L387.1,505L377.7,495.4L375.1,490.3L373.4,488.8ZM570.8,436.7L573,440.3L575,445.9L576.3,456.2L578.5,460.2L577.7,464.3L576.2,466.8L573.4,461.8L571.8,464.3L573.4,470.7L572.7,474.3L570.4,476.3L569.9,483.7L566.6,493.8L562.6,505.9L557.4,522.7L554.3,535.2L550.6,545.7L543.9,547.9L536.6,551.8L531.9,549.4L525.3,546.2L523,541.4L522.5,533.3L519.6,526.2L518.8,519.8L520.3,513.3L524.1,511.8L524.1,508.9L528.1,502.2L528.8,496.6L526.9,492.5L525.4,487L524.7,479L527.6,474.1L528.7,468.7L532.8,468.4L537.4,466.6L540.5,465L544.1,464.9L548.8,460L555.6,454.8L558.1,450.5L556.9,446.9L560.4,447.9L565,442L565.2,436.9L567.9,433.1Z" pathLength="1"/></svg>
+  <div>
+    <h1>Matemática, arquitetura, jogos e <em>símbolos africanos</em></h1>
+    <p class="lead">Povos africanos criaram sistemas de contagem, tabuleiros, escritas em símbolos, cidades de barro e de pedra, medicina e química. Esta página reúne esses saberes para levar à sala de aula.</p>
+    <ul class="chips">
+      <li><a href="#etnomatematica">Afroetnomatemática</a></li>
+      <li><a href="#mancala">Mancala</a></li>
+      <li><a href="#adinkra">Adinkra</a></li>
+      <li><a href="#arquitetura">Arquitetura africana</a></li>
+      <li><a href="#jogos">Shisima</a></li>
+      <li><a href="#jogos">Yoté</a></li>
+      <li><a href="#jogos">Fanorona</a></li>
+      <li><a href="#egito">Egito: medicina, matemática, metalurgia e química</a></li>
+    </ul>
+  </div>
+  <div class="hero-art" id="heroArt" role="img" aria-label="Desenho de um sol vermelho com um tabuleiro octogonal de Shisima e círculos concêntricos no estilo Adinkrahene"></div>
+</div>
+
+</div>
+<div class="kente"></div>
+
+<!-- visão geral -->
+<div class="wrap">
+<section id="visao">
+  <div class="sec-head">
+    <h2>Oito saberes, um mesmo ponto de partida</h2>
+    <p>Cada tema abaixo nasceu em um lugar e em um povo. Todos mostram que contar, medir, desenhar, projetar e jogar são práticas africanas com história longa.</p>
+  </div>
+  <div class="overview">
+    <a class="ov" href="#etnomatematica" style="--c:var(--gold)"><h3>Afroetnomatemática</h3><dl><div><dt>Origem</dt><dd>Angola, Moçambique, Nigéria e o Brasil</dd></div><div><dt>Ideia matemática</dt><dd>Contagem, padrões e geometria feitos na vida cotidiana</dd></div></dl></a>
+    <a class="ov" href="#mancala" style="--c:var(--green)"><h3>Mancala</h3><dl><div><dt>Origem</dt><dd>Muitos povos africanos, com nomes como Oware, Bao e Ayò</dd></div><div><dt>Ideia matemática</dt><dd>Divisão com resto e planejamento de jogadas</dd></div></dl></a>
+    <a class="ov" href="#adinkra" style="--c:var(--red)"><h3>Adinkra</h3><dl><div><dt>Origem</dt><dd>Povo Akan, em Gana e na Costa do Marfim</dd></div><div><dt>Ideia matemática</dt><dd>Simetrias de reflexão e de rotação</dd></div></dl></a>
+    <a class="ov" href="#arquitetura" style="--c:var(--clay)"><h3>Arquitetura africana</h3><dl><div><dt>Origem</dt><dd>Mali, Zimbábue, Togo, Etiópia, Sudão e outros</dd></div><div><dt>Ideia matemática</dt><dd>Geometria, proporção e fractais</dd></div></dl></a>
+    <a class="ov" href="#jogos" style="--c:var(--gold)"><h3>Shisima</h3><dl><div><dt>Origem</dt><dd>Povo Luhya, no Quênia</dd></div><div><dt>Ideia matemática</dt><dd>Octógono, ângulos e alinhamento de três</dd></div></dl></a>
+    <a class="ov" href="#jogos" style="--c:var(--green)"><h3>Yoté</h3><dl><div><dt>Origem</dt><dd>Senegal e África Ocidental</dd></div><div><dt>Ideia matemática</dt><dd>Coordenadas em grade e captura em sequência</dd></div></dl></a>
+    <a class="ov" href="#jogos" style="--c:var(--red)"><h3>Fanorona</h3><dl><div><dt>Origem</dt><dd>Madagascar</dd></div><div><dt>Ideia matemática</dt><dd>Linhas, diagonais e pontos de conexão</dd></div></dl></a>
+    <a class="ov" href="#egito" style="--c:var(--ochre)"><h3>Egito Antigo</h3><dl><div><dt>Origem</dt><dd>Vale do Nilo, nordeste da África</dd></div><div><dt>Ideia matemática</dt><dd>Frações, áreas, volumes e medidas</dd></div></dl></a>
+  </div>
+</section>
+</div>
+<div class="kente thin"></div>
+
+<!-- afroetnomatematica -->
+<div class="alt"><div class="wrap">
+<section id="etnomatematica">
+  <div class="sec-head">
+    <h2>A matemática que cada povo pratica</h2>
+    <p>Etnomatemática estuda como grupos culturais contam, medem, ordenam e projetam. Ao olhar para povos africanos e afro-brasileiros, chamamos de afroetnomatemática.</p>
+  </div>
+  <div class="cols">
+    <div class="prose">
+      <p>O termo etnomatemática foi proposto pelo brasileiro <b>Ubiratan D'Ambrosio</b>, que defendia que a matemática escolar precisa reconhecer os modos de calcular de cada cultura. O moçambicano <b>Paulus Gerdes</b> ampliou esse estudo com a geometria presente em cestos, esteiras e desenhos de areia da África.</p>
+      <h3>Desenhos <i>sona</i> do povo Chokwe</h3>
+      <p>No leste de Angola, contadores de histórias Chokwe traçavam no chão de areia desenhos chamados <i>sona</i> (no singular, <i>lusona</i>). Eles começam com uma grade de pontos e uma linha que contorna os pontos sem levantar o dedo. Cada desenho ilustra um provérbio, um animal ou uma lenda, e envolve simetria e contagem de pontos.</p>
+      <h3>Contar de outro jeito</h3>
+      <p>O sistema numérico do povo iorubá usa base 20 e muita subtração. O número 19 é dito <i>ọ̀kàndínlógún</i>: um a menos que vinte. Para quem aprende a contar em base 10, comparar os dois sistemas ajuda a perceber que a base não é única.</p>
+      <div class="callout"><b>Osso de Ishango.</b> Encontrado na região do Congo, tem cerca de 20 mil anos e traz entalhes agrupados em colunas. Muitos pesquisadores veem contagem ou registro de quantidades. Outros discutem essa leitura, então vale apresentá-lo como objeto em estudo.</div>
+    </div>
+    <figure class="fig" style="margin:0">
+      <svg viewBox="0 0 320 240" role="img" aria-label="Grade de pontos com linhas curvas que contornam os pontos, no estilo dos desenhos sona">
+        <g id="sonaDots"></g>
+        <path d="M60 120 C60 70, 100 50, 120 80 C140 110, 180 110, 200 80 C220 50, 260 70, 260 120 C260 170, 220 190, 200 160 C180 130, 140 130, 120 160 C100 190, 60 170, 60 120 Z" fill="none" stroke="#f0b429" stroke-width="4" stroke-linecap="round"/>
+      </svg>
+      <figcaption>Esquema inspirado nos desenhos sona: pontos em grade e uma linha contínua que os envolve. Desenho ilustrativo, não é um lusona documentado.</figcaption>
+    </figure>
+  </div>
+</section>
+</div></div>
+<div class="kente thin"></div>
+
+<!-- mancala -->
+<div class="wrap">
+<section id="mancala">
+  <div class="sec-head">
+    <h2>Semear, contar e capturar</h2>
+    <p>Mancala é o nome de uma família de jogos jogados em fileiras de buracos com sementes ou pedrinhas. A palavra vem do árabe <i>naqala</i>, "mover". Cada povo tem seu nome e suas regras: Oware (Gana), Ayò (iorubá, Nigéria), Awalé (Costa do Marfim) e Bao (África Oriental).</p>
+  </div>
+  <div class="cols">
+    <div class="prose">
+      <h3>Como se joga o Oware</h3>
+      <ol>
+        <li>O tabuleiro tem 2 fileiras de 6 casas. Cada casa começa com 4 sementes, somando 48.</li>
+        <li>Cada jogador controla a fileira mais próxima de si.</li>
+        <li>Na sua vez, escolha uma casa sua, pegue todas as sementes e distribua uma por casa, no sentido anti-horário.</li>
+        <li>Se a última semente cair em casa do adversário que fique com 2 ou 3 sementes, você captura essas sementes. Capturas anteriores na fileira também valem, se tiverem 2 ou 3.</li>
+        <li>Ganha quem juntar mais de 24 sementes capturadas.</li>
+      </ol>
+      <div class="callout"><b>Detalhe de matemática.</b> Se a casa escolhida tem 12 sementes ou mais, a distribuição dá a volta e pula a casa de origem. Prever onde a última semente vai cair é um problema de divisão com resto.</div>
+      <p>As origens do jogo são discutidas. Tabuleiros esculpidos em pedra foram achados em sítios da Etiópia e da Eritreia, e as datas propostas variam entre os pesquisadores. O que se sabe com segurança é que o mancala se espalhou por todo o continente e cruzou o Atlântico com a diáspora africana.</p>
+    </div>
+    <div class="stack">
+      <div>
+        <p class="board-label">Início da partida</p>
+        <div class="board" id="boardA"></div>
+      </div>
+      <div>
+        <p class="board-label">Depois de semear a casa C (4 sementes)</p>
+        <div class="board" id="boardB"></div>
+        <p style="font-size:13.5px;color:var(--muted);margin-top:10px">A casa C (borda vermelha) fica vazia. As quatro casas seguintes (borda dourada) recebem uma semente cada.</p>
+      </div>
+    </div>
+  </div>
+</section>
+</div>
+<div class="kente thin"></div>
+
+<!-- adinkra -->
+<div class="alt"><div class="wrap">
+<section id="adinkra">
+  <div class="sec-head">
+    <h2>Provérbios desenhados</h2>
+    <p>Adinkra é um conjunto de símbolos do povo Akan, de Gana e da Costa do Marfim. Cada desenho condensa um provérbio ou um valor e aparece em tecidos estampados à mão, em esculturas, em portões e na arquitetura. A tradição liga o nome a um rei de Gyaman chamado Adinkra, e os tecidos eram usados em cerimônias importantes como os funerais.</p>
+  </div>
+  <div class="adinkra" id="adinkraGrid"></div>
+  <div class="callout" style="margin-top:28px;max-width:80ch"><b>Gye Nyame</b> é o símbolo Adinkra mais conhecido e fala da soberania e do poder supremo de Deus. Os desenhos acima são redesenhos estilizados para esta página. Para estudar a forma original, consulte coleções de referência sobre arte Akan.</div>
+</section>
+</div></div>
+<div class="kente thin"></div>
+
+<!-- arquitetura -->
+<div class="wrap">
+<section id="arquitetura">
+  <div class="sec-head">
+    <h2>Cidades de barro, pedra e rocha</h2>
+    <p>O continente tem a maior diversidade de formas de construir do mundo: torres de barro, muralhas de pedra sem argamassa, igrejas escavadas na rocha e pirâmides. Cada obra responde a um clima, a um material e a um modo de viver em comunidade.</p>
+  </div>
+  <div class="arch" id="archGrid"></div>
+  <div class="cols" style="margin-top:44px">
+    <div class="prose">
+      <h3>Fractais em aldeias</h3>
+      <p>O pesquisador Ron Eglash, no livro <i>African Fractals</i>, descreveu aldeias em que a planta e as casas repetem a mesma forma em escalas diferentes, como em assentamentos de Camarões e da Zâmbia. Essa repetição de padrão em várias escalas é o que a matemática chama de fractal.</p>
+    </div>
+    <div class="prose">
+      <h3>E no Brasil</h3>
+      <p>Grande parte das casas, igrejas e fortes do período colonial foi erguida por pessoas africanas escravizadas e por seus descendentes. Olhar para a arquitetura brasileira também é olhar para saberes de construção trazidos da África.</p>
+    </div>
+  </div>
+</section>
+</div>
+<div class="kente thin"></div>
+
+<!-- jogos -->
+<div class="alt"><div class="wrap">
+<section id="jogos">
+  <div class="sec-head">
+    <h2>Shisima, Yoté e Fanorona</h2>
+    <p>Três jogos de estratégia de regiões diferentes do continente. Todos pedem atenção a posições, distâncias e caminhos, e podem ser feitos com tampinhas, sementes e um tabuleiro riscado em papel ou no chão.</p>
+  </div>
+  <div class="games">
+
+    <article class="game">
+      <div>
+        <span class="tag gold">Quênia</span>
+        <h3>Shisima</h3>
+        <ul class="facts"><li>2 jogadores</li><li>3 peças cada</li><li>9 pontos</li></ul>
+        <p>Jogo do povo Luhya, jogado por crianças. O tabuleiro lembra um octógono com linhas que se encontram no centro. Em luhya, <i>shisima</i> quer dizer "extensão de água", e as peças são chamadas de <i>imbalavali</i>, os insetos que deslizam sobre a água.</p>
+        <ol>
+          <li>Cada jogador coloca suas 3 peças em pontos vizinhos, de lados opostos do octógono.</li>
+          <li>Na sua vez, mova uma peça para um ponto vazio ligado a ela por uma linha.</li>
+          <li>Vence quem formar uma linha de três peças, o que só acontece passando pelo centro.</li>
+        </ol>
+        <p class="mathline"><b>Matemática:</b> o octógono tem 8 lados e 8 vértices. Cada ponto da borda fica a 45° do vizinho (360° ÷ 8), e o tabuleiro tem simetria de rotação e de reflexão.</p>
+      </div>
+      <figure class="fig" style="margin:0"><svg id="shisima" viewBox="0 0 300 300" role="img" aria-label="Tabuleiro de Shisima: octógono com oito pontos na borda, um no centro e três peças de cada cor"></svg><figcaption>Posição inicial do Shisima.</figcaption></figure>
+    </article>
+
+    <article class="game">
+      <div>
+        <span class="tag">Senegal</span>
+        <h3>Yoté</h3>
+        <ul class="facts"><li>2 jogadores</li><li>12 peças cada</li><li>grade 6 × 5</li></ul>
+        <p>Jogado no Senegal e em países vizinhos, tradicionalmente com sementes e pedrinhas em buracos feitos na terra. Existem variações de região para região.</p>
+        <ol>
+          <li>O tabuleiro começa vazio. Cada jogador tem 12 peças na mão.</li>
+          <li>Na sua vez, coloque uma peça em casa vazia ou mova uma peça já posta uma casa para cima, para baixo ou para o lado.</li>
+          <li>Para capturar, salte sobre uma peça adversária vizinha e caia na casa vazia logo atrás. A peça saltada sai do jogo.</li>
+          <li>Quem captura também retira outra peça do adversário, à sua escolha.</li>
+          <li>Ganha quem deixar o adversário sem peças.</li>
+        </ol>
+        <p class="mathline"><b>Matemática:</b> cada casa tem uma coluna e uma linha, como em um plano cartesiano. Um salto desloca a peça 2 unidades em uma direção.</p>
+      </div>
+      <figure class="fig" style="margin:0"><svg id="yote" viewBox="0 0 360 300" role="img" aria-label="Tabuleiro de Yoté com grade de 6 por 5 casas e uma captura indicada por seta"></svg><figcaption>Em dourado, uma peça salta sobre a peça verde e cai na casa vazia seguinte.</figcaption></figure>
+    </article>
+
+    <article class="game">
+      <div>
+        <span class="tag red">Madagascar</span>
+        <h3>Fanorona</h3>
+        <ul class="facts"><li>2 jogadores</li><li>22 peças cada</li><li>9 × 5 pontos</li></ul>
+        <p>Jogo tradicional de Madagascar. A tradição conta que o rei Ralambo, no século XVI, incentivou o jogo para treinar o raciocínio de estratégia. Aqui as peças ficam nos pontos de encontro das linhas, e algumas linhas são diagonais.</p>
+        <ol>
+          <li>Começa com todos os pontos ocupados, menos o do meio.</li>
+          <li>Mova uma peça por uma linha até um ponto vazio vizinho.</li>
+          <li>Se o movimento terminar encostado em peças do adversário em fila, você captura a fila. Pode capturar avançando sobre ela ou se afastando dela.</li>
+          <li>Ganha quem eliminar todas as peças do adversário.</li>
+        </ol>
+        <p class="mathline"><b>Matemática:</b> pontos de cruzamento com 8 ligações permitem mais direções que os de 4 ligações. A forma das linhas muda a estratégia, e quem joga precisa enxergar diagonais.</p>
+      </div>
+      <figure class="fig" style="margin:0"><svg id="fanorona" viewBox="0 0 450 250" role="img" aria-label="Tabuleiro de Fanorona com 9 por 5 pontos, diagonais e peças na posição inicial"></svg><figcaption>Posição inicial do Fanorona: 44 peças em 45 pontos.</figcaption></figure>
+    </article>
+
+  </div>
+</section>
+</div></div>
+<div class="kente thin"></div>
+
+<!-- egito -->
+<div class="wrap">
+<section id="egito">
+  <div class="sec-head">
+    <h2>Medicina, matemática, metalurgia e química no Nilo</h2>
+    <p>O Egito fica na África, e seus conhecimentos foram escritos em papiros, gravados em templos e usados em obras enormes. Os egípcios também mantiveram contato com a Núbia, ao sul, de onde vinha muito ouro.</p>
+  </div>
+  <div class="egy">
+    <article style="--c:var(--red)">
+      <h3>Medicina</h3>
+      <ul>
+        <li>O <b>Papiro Edwin Smith</b> (cerca de 1600 a.C.) descreve 48 casos de ferimentos, cada um com exame, diagnóstico e tratamento.</li>
+        <li>O <b>Papiro Ebers</b> (cerca de 1550 a.C.) reúne cerca de 700 fórmulas e remédios.</li>
+        <li>Imhotep, arquiteto da pirâmide de degraus de Djoser, ficou lembrado também como médico.</li>
+      </ul>
+    </article>
+    <article style="--c:var(--gold)">
+      <h3>Matemática</h3>
+      <ul>
+        <li>O <b>Papiro Rhind</b> traz 84 problemas, com frações, áreas e proporções. Ele foi copiado pelo escriba Ahmes por volta de 1550 a.C.</li>
+        <li>Para a área do círculo, o papiro usa uma regra que equivale a um valor de pi próximo de 3,16.</li>
+        <li>O <b>Papiro de Moscou</b> mostra como calcular o volume de um tronco de pirâmide.</li>
+        <li>Os egípcios escreviam frações como somas de frações de numerador 1.</li>
+      </ul>
+    </article>
+    <article style="--c:var(--clay)">
+      <h3>Metalurgia</h3>
+      <ul>
+        <li>Trabalharam cobre, ouro e bronze, em joias, ferramentas, armas e estátuas.</li>
+        <li>O ouro vinha de minas do deserto oriental e da Núbia. O nome Núbia pode vir da palavra egípcia para ouro, <i>nub</i>.</li>
+        <li>Fundiam metais em fornos com sopradores e moldavam peças em formas.</li>
+      </ul>
+    </article>
+    <article style="--c:var(--green)">
+      <h3>Química</h3>
+      <ul>
+        <li>Na mumificação usavam <b>natrão</b>, um sal natural que seca o corpo, junto com resinas e óleos.</li>
+        <li>O <b>azul egípcio</b> é considerado o primeiro pigmento sintético, feito pela queima de cobre, cal e areia.</li>
+        <li>Produziram vidro, faiança, cerveja e pão fermentado.</li>
+        <li>Uma hipótese diz que a palavra "química" vem de <i>Kemet</i>, nome egípcio do país. Essa origem é discutida.</li>
+      </ul>
+    </article>
+  </div>
+  <div class="timeline" aria-label="Linha do tempo">
+    <div><b>c. 2650 a.C.</b><span>Pirâmide de degraus de Djoser, obra de Imhotep.</span></div>
+    <div><b>c. 1850 a.C.</b><span>Papiro de Moscou, problemas de geometria.</span></div>
+    <div><b>c. 1600 a.C.</b><span>Papiro Edwin Smith, tratado de feridas.</span></div>
+    <div><b>c. 1550 a.C.</b><span>Papiros Rhind e Ebers.</span></div>
+  </div>
+</section>
+</div>
+<div class="kente"></div>
+
+<!-- sala -->
+<div class="alt"><div class="wrap">
+<section id="sala">
+  <div class="sec-head">
+    <h2>Por que ensinar isso</h2>
+    <p>Quando a escola apresenta a matemática, a arquitetura e os jogos só pela Europa, ela ensina uma história incompleta. Incluir saberes africanos é cumprir a lei e mostrar a todos os estudantes que o conhecimento tem muitas origens.</p>
+  </div>
+  <div class="laws">
+    <div class="law"><h3>Lei 10.639/2003</h3><p>Torna obrigatório o ensino de História e Cultura Afro-Brasileira no currículo oficial.</p><a href="https://www.planalto.gov.br/ccivil_03/leis/2003/l10.639.htm" target="_blank" rel="noopener">Ler a lei</a></div>
+    <div class="law"><h3>Lei 11.645/2008</h3><p>Inclui também a História e Cultura Indígena como conteúdo obrigatório.</p><a href="https://www.planalto.gov.br/ccivil_03/_ato2007-2010/2008/lei/l11645.htm" target="_blank" rel="noopener">Ler a lei</a></div>
+    <div class="law"><h3>Diretrizes Curriculares Nacionais (2004)</h3><p>Orientam como integrar a educação das relações étnico-raciais ao currículo de forma crítica, sistemática e permanente.</p></div>
+    <div class="law"><h3>Orientações e Ações (2010)</h3><p>Propõem práticas para implementação, formação docente, planejamento e produção de materiais educativos.</p></div>
+  </div>
+
+  <div class="cols" style="margin-top:48px">
+    <div class="prose">
+      <h3>Valores civilizatórios presentes no tema</h3>
+      <p>Os jogos pedem cooperação e ludicidade, o Adinkra guarda memória e ancestralidade, as aldeias circulares e os tabuleiros trazem circularidade, e a arquitetura mostra a relação com a natureza.</p>
+      <ul class="values">
+        <li>Ludicidade</li><li>Memória</li><li>Ancestralidade</li><li>Circularidade</li><li>Cooperação</li><li>Relação com a natureza</li><li>Oralidade</li><li>Identidade</li>
+      </ul>
+    </div>
+    <div class="prose">
+      <h3>Perguntas para conversar em sala</h3>
+      <ol class="ask">
+        <li>Por que a história da matemática costuma começar na Grécia, se havia matemática no Nilo e em toda a África?</li>
+        <li>Que jogos que você conhece usam contar e distribuir peças? O que eles têm em comum com o Mancala?</li>
+        <li>Quem construiu as casas e igrejas da sua cidade, e que saberes foram usados?</li>
+      </ol>
+    </div>
+  </div>
+</section>
+</div></div>
+<div class="kente thin"></div>
+
+<!-- paleta -->
+<div class="wrap">
+<section id="cores">
+  <div class="sec-head">
+    <h2>Cada cor carrega um sentido</h2>
+    <p>A paleta segue cores muito usadas na arte e nos símbolos africanos. Os significados variam entre povos e regiões, e aqui aparecem as leituras mais comuns.</p>
+  </div>
+  <div class="palette">
+    <div class="sw k"><span class="hex">PRETO</span><h3>Ancestralidade</h3><p>História de adversidades, dignidade e a forte resiliência do povo africano.</p></div>
+    <div class="sw r"><span class="hex">VERMELHO</span><h3>Força vital</h3><p>O sangue derramado na luta contra a opressão e o racismo, e o calor do sol e da terra.</p></div>
+    <div class="sw y"><span class="hex">AMARELO E DOURADO</span><h3>Prosperidade</h3><p>A riqueza da terra, a luz do sol e as perspectivas otimistas para o futuro.</p></div>
+    <div class="sw g"><span class="hex">VERDE</span><h3>Renovação</h3><p>Fertilidade, vastidão da natureza, agricultura e esperança de renovação.</p></div>
+    <div class="sw e"><span class="hex">LARANJA, MARROM E OCRE</span><h3>Raízes</h3><p>O barro, os desertos e as raízes físicas e espirituais com o solo africano.</p></div>
+  </div>
+</section>
+</div>
+
+<div class="kente"></div>
+<div class="wrap">
+<footer>
+  <div>
+    <h4>Material pedagógico</h4>
+    <p>História e Culturas Afro-Brasileiras e Indígenas<br>Atividade Avaliativa 2: Plano de aula e material pedagógico na perspectiva da Educação das Relações Étnico-Raciais.</p>
+    <p class="group">Grupo: Milena, Anna Júlia, Samuel Henrique, Raíssa e Raquel<br>Público-alvo: alunos do Ensino Fundamental</p>
+  </div>
+  <div>
+    <h4>Para saber mais</h4>
+    <ul>
+      <li>D'AMBROSIO, Ubiratan. <i>Etnomatemática: elo entre as tradições e a modernidade</i>. Autêntica, 2001.</li>
+      <li>GERDES, Paulus. <i>Sona Geometry</i>: reflections on the tradition of sand drawings in Africa south of the Equator. 1994.</li>
+      <li>EGLASH, Ron. <i>African Fractals</i>: modern computing and indigenous design. Rutgers University Press, 1999.</li>
+      <li>UNESCO, Lista do Patrimônio Mundial: Djenné, Grande Zimbábue, Koutammakou, Lalibela e Meroë.</li>
+    </ul>
+    <p style="margin-top:12px">Os desenhos de símbolos, tabuleiros e construções desta página são ilustrações estilizadas criadas para fins educativos.</p>
+  </div>
+</footer>
+</div>
+</main>
+
+<dialog class="dlg" id="glyphDlg" aria-labelledby="dlgTitle">
+  <button class="dlg-close" id="dlgClose" type="button" aria-label="Fechar">&times;</button>
+  <div class="dlg-head"><svg id="dlgSvg" viewBox="0 0 100 100" aria-hidden="true"></svg><h3 id="dlgTitle"></h3></div>
+  <div class="dlg-body" id="dlgBody"></div>
+</dialog>
+
+<script>
+(function () {
+  var NS = "http://www.w3.org/2000/svg";
+  function mk(tag, attrs, parent) {
+    var e = document.createElementNS(NS, tag);
+    for (var k in attrs) e.setAttribute(k, attrs[k]);
+    if (parent) parent.appendChild(e);
+    return e;
+  }
+  function poly(n, r, cx, cy, rot) {
+    var pts = [];
+    for (var k = 0; k < n; k++) {
+      var a = (rot + (360 / n) * k) * Math.PI / 180;
+      pts.push([cx + r * Math.cos(a), cy + r * Math.sin(a)]);
+    }
+    return pts;
+  }
+  var GOLD = "#f0b429", GREEN = "#3e9142", RED = "#c9302c", INK = "#0f0a07", CREAM = "#f4ead7";
+
+  /* hero */
+  (function () {
+    var host = document.getElementById("heroArt");
+    var s = mk("svg", { viewBox: "0 0 400 400" }, host);
+    mk("circle", { cx: 200, cy: 200, r: 192, fill: RED }, s);
+    mk("circle", { cx: 200, cy: 200, r: 172, fill: "none", stroke: GOLD, "stroke-width": 3, "stroke-dasharray": "1 9", "stroke-linecap": "round" }, s);
+    mk("circle", { cx: 200, cy: 200, r: 150, fill: INK }, s);
+    var pts = poly(8, 128, 200, 200, -67.5);
+    mk("polygon", { points: pts.map(function (p) { return p.join(","); }).join(" "), fill: "none", stroke: GOLD, "stroke-width": 4, "stroke-linejoin": "round" }, s);
+    pts.forEach(function (p) { mk("line", { x1: 200, y1: 200, x2: p[0], y2: p[1], stroke: GOLD, "stroke-width": 2, opacity: 0.8 }, s); });
+    [28, 18, 8].forEach(function (r) { mk("circle", { cx: 200, cy: 200, r: r + 14, fill: "none", stroke: CREAM, "stroke-width": 3 }, s); });
+    mk("circle", { cx: 200, cy: 200, r: 8, fill: GOLD }, s);
+    pts.forEach(function (p, i) {
+      var c = (i >= 4 && i <= 6) ? GOLD : (i <= 2 ? GREEN : INK);
+      mk("circle", { cx: p[0], cy: p[1], r: 13, fill: c, stroke: (c === INK ? CREAM : INK), "stroke-width": 3 }, s);
+    });
+    var kids = Array.prototype.slice.call(s.children);
+    var gRing = mk("g", { "class": "spin" });
+    var gOct = mk("g", { "class": "spinr" });
+    var gCore = mk("g", { "class": "breathe" });
+    gRing.appendChild(kids[1]);
+    kids.slice(3, 12).concat(kids.slice(16)).forEach(function (k) { gOct.appendChild(k); });
+    kids.slice(12, 16).forEach(function (k) { gCore.appendChild(k); });
+    s.insertBefore(gRing, kids[2]);
+    s.appendChild(gOct);
+    s.appendChild(gCore);
+  })();
+
+  /* sona dots */
+  (function () {
+    var g = document.getElementById("sonaDots");
+    for (var i = 0; i < 5; i++) for (var j = 0; j < 3; j++) {
+      var cx = 60 + i * 50, cy = 70 + j * 50;
+      mk("circle", { cx: cx, cy: cy, r: 5, fill: "#f4ead7" }, g);
+    }
+  })();
+
+  /* mancala */
+  function pit(n, cls, label) {
+    var d = document.createElement("div");
+    d.className = "pit" + (cls ? " " + cls : "");
+    for (var i = 0; i < Math.min(n, 9); i++) { var s = document.createElement("span"); s.className = "seed"; d.appendChild(s); }
+    var t = document.createElement("span"); t.className = "n"; t.textContent = n; d.appendChild(t);
+    d.setAttribute("aria-label", (label || "") + " " + n + " sementes");
+    return d;
+  }
+  function board(id, top, bottom, cls) {
+    var host = document.getElementById(id);
+    cls = cls || {};
+    var r1 = document.createElement("div"); r1.className = "row";
+    var r2 = document.createElement("div"); r2.className = "row";
+    top.forEach(function (n, i) { r1.appendChild(pit(n, cls["t" + i], "Casa de cima " + (i + 1))); });
+    bottom.forEach(function (n, i) { r2.appendChild(pit(n, cls["b" + i], "Casa " + "ABCDEF".charAt(i))); });
+    host.appendChild(r1); host.appendChild(r2);
+  }
+  board("boardA", [4,4,4,4,4,4], [4,4,4,4,4,4]);
+  board("boardB", [4,4,4,4,4,5], [4,4,0,5,5,5], { b2: "src", b3: "dst", b4: "dst", b5: "dst", t5: "dst" });
+
+  /* adinkra */
+  var glyphs = [
+    { n: "Adinkrahene", s: "Chefe dos símbolos Adinkra. Grandeza, carisma e liderança.", m: "Círculos concêntricos: mesmo centro, raios diferentes.",
+      svg: '<circle cx="50" cy="50" r="38"/><circle cx="50" cy="50" r="25"/><circle cx="50" cy="50" r="12"/>' },
+    { n: "Sankofa", s: "\"Volte e busque.\" Aprender com o passado para construir o futuro.", m: "Simetria de reflexão em torno de um eixo vertical.",
+      svg: '<path d="M50 84 C20 64 16 34 34 30 C44 28 50 38 50 38 C50 38 56 28 66 30 C84 34 80 64 50 84 Z"/><path d="M34 30 C28 18 16 24 22 34"/><path d="M66 30 C72 18 84 24 78 34"/>' },
+    { n: "Dwennimmen", s: "Chifres de carneiro. Humildade e força andando juntas.", m: "Simetria de reflexão: a metade esquerda espelha a direita.",
+      svg: '<path d="M46 28 C18 28 18 72 40 72 C52 72 52 58 42 58"/><path d="M54 28 C82 28 82 72 60 72 C48 72 48 58 58 58"/><path d="M20 88 H80"/>' },
+    { n: "Nkyinkyim", s: "Torção. Iniciativa, dinamismo e capacidade de mudar de rumo.", m: "Simetria de rotação de 180°: girando meia volta, a figura se repete.",
+      svg: '<path d="M22 24 H78 L22 50 H78 L22 76 H78"/>' },
+    { n: "Aya", s: "Samambaia. Resistência, perseverança e capacidade de se virar.", m: "Padrão repetido em pares, com um eixo de simetria no meio.",
+      svg: '<path d="M50 90 V14"/><path d="M50 74 L28 58 M50 74 L72 58 M50 54 L30 38 M50 54 L70 38 M50 34 L36 22 M50 34 L64 22"/>' },
+    { n: "Nsoromma", s: "Criança do céu, a estrela. Esperança, orientação e proteção.", m: "Simetria de rotação de ordem 4: quatro giros de 90° voltam à figura inicial.",
+      svg: '<path d="M50 10 L58 42 L90 50 L58 58 L50 90 L42 58 L10 50 L42 42 Z"/>' },
+    { n: "Duafe", s: "Pente de madeira. Beleza, cuidado e zelo.", m: "Eixo de simetria no meio e dentes em sequência regular.",
+      svg: '<path d="M50 14 C28 14 22 32 24 46 C26 60 40 64 50 64 C60 64 74 60 76 46 C78 32 72 14 50 14 Z"/><path d="M34 64 V88 M42 64 V88 M50 64 V90 M58 64 V88 M66 64 V88"/>' },
+    { n: "Funtunfunefu-Denkyemfunefu", s: "Crocodilos siameses. Democracia e unidade na diversidade: dividem o mesmo estômago e disputam a comida.", m: "Duas formas iguais espelhadas, ligadas por um centro comum.",
+      svg: '<ellipse cx="32" cy="50" rx="16" ry="30"/><ellipse cx="68" cy="50" rx="16" ry="30"/><circle cx="50" cy="50" r="6" class="fillme"/><path d="M48 50 H52"/>' }
+  ];
+  var more = [
+    { sig: "Adinkrahene significa \"chefe dos Adinkra\". Por isso é ligado à liderança, à grandeza e ao carisma. A tradição conta que ele inspirou o desenho de outros símbolos do conjunto.", mat: "Os três círculos têm o mesmo centro e raios diferentes. Dá para medir o raio de cada um e comparar: quanto maior o raio, maior o círculo.", act: "Com compasso e régua, desenhe círculos concêntricos de raios 2 cm, 4 cm e 6 cm. Depois calcule o diâmetro de cada um e descreva o que muda e o que se mantém." },
+    { sig: "Sankofa vem da língua Akan e quer dizer algo como \"volte e busque\". É muito ligado a um provérbio que diz que não é errado voltar para buscar o que ficou para trás. Também aparece desenhado como um pássaro que olha para trás com um ovo no bico. Muitas escolas e movimentos negros do Brasil usam o Sankofa.", mat: "O coração tem simetria de reflexão: uma linha vertical no meio o divide em duas metades iguais, uma espelhada na outra.", act: "Dobre uma folha ao meio, desenhe metade de um coração e recorte. Ao abrir, confira o eixo de simetria. Depois converse: o que da nossa história vale a pena buscar de volta?" },
+    { sig: "Dwennimmen representa os chifres de um carneiro. O carneiro é forte e luta com os chifres, mas também sabe ser humilde. O símbolo lembra que força e humildade podem andar juntas.", mat: "As duas curvas se espelham. Isso é simetria de reflexão: cada ponto de um lado tem um ponto correspondente do outro lado, à mesma distância do eixo.", act: "Coloque um espelho pequeno sobre o eixo do desenho e veja como a metade vira a figura inteira. Depois desenhe outras figuras com eixo de simetria, como borboleta, folha e letras." },
+    { sig: "Nkyinkyim lembra uma torção ou um caminho cheio de voltas. Representa iniciativa, dinamismo e a capacidade de mudar de rumo. A vida é como uma jornada que não segue uma reta.", mat: "Se você girar a figura meia volta (180°), ela fica igual. Isso é simetria de rotação.", act: "Desenhe o símbolo em papel transparente. Gire o papel 180° sobre o desenho original e verifique se as duas figuras coincidem. Teste com outras letras, como S, Z e N." },
+    { sig: "Aya é a samambaia, planta que cresce em lugares difíceis. Por isso simboliza resistência, perseverança e a capacidade de se virar mesmo em situações adversas.", mat: "Os ramos aparecem em pares, um de cada lado do caule. Contar os pares é uma forma de trabalhar contagem, padrões e simetria.", act: "Desenhe uma samambaia com 3, 4 e 5 pares de ramos. Preencha uma tabela: quantos ramos há no total em cada desenho? Qual é o padrão?" },
+    { sig: "Nsoromma significa \"criança do céu\" e representa a estrela. Está ligado à ideia de orientação, esperança e proteção. Assim como as estrelas guiam quem viaja à noite, o símbolo lembra que há quem vele por nós.", mat: "A estrela de quatro pontas tem simetria de rotação de ordem 4: a cada giro de 90°, ela coincide com ela mesma. Quatro giros fecham a volta de 360°.", act: "Recorte uma estrela de quatro pontas e fixe com um alfinete no centro. Gire de 90 em 90 graus e observe quantas posições parecem iguais. Depois tente com estrelas de 5 e 6 pontas." },
+    { sig: "Duafe é o pente de madeira. Entre os Akan, é ligado à beleza, ao cuidado com o corpo e ao zelo. Também é associado à feminilidade e ao carinho no cuidado com os outros.", mat: "O pente tem um eixo de simetria vertical e dentes distribuídos em intervalos iguais, o que forma uma sequência regular.", act: "Desenhe um pente com 5, 7 e 9 dentes e marque o dente central. Qual é a relação entre o número de dentes e os dentes de cada lado do centro?" },
+    { sig: "Funtunfunefu-Denkyemfunefu quer dizer algo como \"crocodilos siameses\". Eles dividem o mesmo estômago, mas brigam pela comida, embora tudo o que comem vá para o mesmo corpo. É uma lição sobre democracia, cooperação e unidade na diversidade.", mat: "As duas formas são iguais e espelhadas, unidas por um centro comum. Dá para estudar a reflexão e também o que é parte e o que é todo.", act: "Em grupo, converse: quando brigamos por algo que, no fim, é de todos, quem perde? Depois, desenhe duas figuras espelhadas ligadas por um ponto central." }
+  ];
+  var dlg = document.getElementById("glyphDlg");
+  function openGlyph(i) {
+    var g = glyphs[i], x = more[i];
+    document.getElementById("dlgSvg").innerHTML = g.svg;
+    document.getElementById("dlgTitle").textContent = g.n;
+    document.getElementById("dlgBody").innerHTML = '<div><h4>Significado</h4><p>' + x.sig + '</p></div><div><h4>Matemática</h4><p>' + x.mat + '</p></div><div class="act"><h4>Atividade para a sala</h4><p>' + x.act + '</p></div><div><h4>Onde aparece</h4><p>Os símbolos Adinkra são estampados em tecidos, esculpidos em madeira e metal, usados em portões, paredes e hoje também em logotipos e roupas.</p></div>';
+    if (dlg.showModal) dlg.showModal(); else dlg.setAttribute("open", "");
+  }
+  document.getElementById("dlgClose").addEventListener("click", function () { dlg.close(); });
+  dlg.addEventListener("click", function (e) { if (e.target === dlg) dlg.close(); });
+  var grid = document.getElementById("adinkraGrid");
+  glyphs.forEach(function (g, i) {
+    var d = document.createElement("article"); d.className = "glyph";
+    d.setAttribute("role", "button"); d.setAttribute("tabindex", "0"); d.setAttribute("aria-label", "Ler mais sobre " + g.n);
+    d.innerHTML = '<svg viewBox="0 0 100 100" aria-hidden="true">' + g.svg + '</svg><h3>' + g.n + '</h3><p class="sig">' + g.s + '</p><p class="mat"><b>Matemática</b>' + g.m + '</p><p class="more">Ler mais +</p>';
+    d.addEventListener("click", function () { openGlyph(i); });
+    d.addEventListener("keydown", function (e) { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); openGlyph(i); } });
+    grid.appendChild(d);
+  });
+
+  /* arquitetura */
+  var builds = [
+    { c: "#b5582b", t: "Grande Mesquita de Djenné", w: "Mali", p: "Construída de tijolos de barro e reboco de barro, com vigas de madeira que ficam à mostra e servem de andaime. O prédio atual é de 1907, sobre construções mais antigas. Todo ano a população se reúne para reformar o reboco, em uma festa comunitária.", m: "Simetria e torres que se afinam para cima.",
+      svg: '<g fill="currentColor"><rect x="28" y="36" width="64" height="34"/><polygon points="18,70 25,20 37,20 42,70"/><polygon points="78,70 83,20 95,20 102,70"/><circle cx="31" cy="16" r="3.5"/><circle cx="89" cy="16" r="3.5"/><rect x="50" y="26" width="20" height="10"/></g><g fill="#0f0a07"><path d="M52 70 V54 A8 8 0 0 1 68 54 V70 Z"/></g><g stroke="#0f0a07" stroke-width="2.5"><path d="M22 36 h-6 M23 48 h-6 M24 60 h-6 M98 36 h6 M97 48 h6 M96 60 h6"/></g>' },
+    { c: "#ochre", t: "Grande Zimbábue", w: "Zimbábue", p: "Cidade do povo Shona, ocupada entre os séculos XI e XV. As muralhas de pedra foram erguidas sem argamassa, com blocos encaixados. O nome vem do shona e significa algo como \"grandes casas de pedra\".", m: "Curvas, círculos e empilhamento regular de pedras.",
+      svg: '<g fill="currentColor"><path d="M8 72 C8 24 112 24 112 72 Z"/></g><g fill="none" stroke="#0f0a07" stroke-width="2"><path d="M16 66 C20 38 100 38 104 66"/><path d="M24 58 C30 42 90 42 96 58"/><path d="M34 50 C42 44 78 44 86 50"/></g><g fill="currentColor"><polygon points="50,46 60,14 70,46"/></g>' },
+    { c: "#b5582b", t: "Casas Tammari (Koutammakou)", w: "Togo e Benin", p: "Casas-torre de terra do povo Batammariba, com cobertura de palha e andares para guardar grãos, abrigar animais e morar. A paisagem é Patrimônio Mundial da UNESCO.", m: "Cilindros e cones em duas escalas.",
+      svg: '<g fill="currentColor"><rect x="20" y="42" width="32" height="30"/><polygon points="14,42 36,12 58,42"/><rect x="66" y="50" width="28" height="22"/><polygon points="60,50 80,26 100,50"/></g><g fill="#0f0a07"><rect x="31" y="58" width="9" height="14"/><rect x="75" y="60" width="8" height="12"/></g>' },
+    { c: "#c9302c", t: "Casas Ndebele pintadas", w: "África do Sul e Zimbábue", p: "Mulheres do povo Ndebele pintam as paredes com faixas e figuras geométricas em cores fortes. Os desenhos são feitos à mão livre e transmitem identidade e tradição.", m: "Triângulos, losangos e faixas repetidas.",
+      svg: '<rect x="8" y="8" width="104" height="64" fill="#6b4328"/><path d="M8 24 L22 10 L36 24 L50 10 L64 24 L78 10 L92 24 L106 10" fill="none" stroke="#f0b429" stroke-width="5"/><path d="M8 44 L22 30 L36 44 L50 30 L64 44 L78 30 L92 44 L106 30" fill="none" stroke="#3e9142" stroke-width="5"/><path d="M8 64 L22 50 L36 64 L50 50 L64 64 L78 50 L92 64 L106 50" fill="none" stroke="#c9302c" stroke-width="5"/>' },
+    { c: "#ochre", t: "Igrejas de Lalibela", w: "Etiópia", p: "Onze igrejas escavadas de cima para baixo em blocos de rocha, nos séculos XII e XIII. A Igreja de São Jorge tem planta em forma de cruz e é uma das mais conhecidas.", m: "Planta em cruz com simetria nos dois eixos.",
+      svg: '<g fill="currentColor"><rect x="46" y="6" width="28" height="68"/><rect x="22" y="26" width="76" height="28"/></g><g fill="none" stroke="#0f0a07" stroke-width="2.5"><rect x="54" y="14" width="12" height="52"/><rect x="30" y="34" width="60" height="12"/></g>' },
+    { c: "#6b4328", t: "Pirâmides de Meroë", w: "Sudão (Núbia)", p: "O reino de Kush construiu mais de 200 pirâmides, em locais como Meroë, el-Kurru e Nuri. As núbias são menores e mais inclinadas do que as do Egito.", m: "Triângulos de ângulo fechado, base e altura.",
+      svg: '<g fill="currentColor"><polygon points="6,72 26,24 46,72"/><polygon points="40,72 62,14 84,72"/><polygon points="78,72 94,38 110,72"/></g><g stroke="#0f0a07" stroke-width="1.8"><path d="M16 48 H36 M12 60 H40 M53 40 H71 M48 54 H76 M44 66 H80"/></g>' }
+  ];
+  var ag = document.getElementById("archGrid");
+  builds.forEach(function (b) {
+    var d = document.createElement("article"); d.className = "build";
+    var col = b.c.charAt(0) === "#" && b.c.length === 7 ? b.c : "#c98a2b";
+    d.style.setProperty("--c", col);
+    d.innerHTML = '<div class="pic" style="color:' + col + '"><svg viewBox="0 0 120 80" aria-hidden="true">' + b.svg + '</svg></div><div class="body"><p class="where">' + b.w + '</p><h3>' + b.t + '</h3><p>' + b.p + '</p><p class="mat"><b>Matemática</b>' + b.m + '</p></div>';
+    ag.appendChild(d);
+  });
+
+  /* shisima */
+  (function () {
+    var s = document.getElementById("shisima");
+    var pts = poly(8, 112, 150, 150, -67.5);
+    mk("polygon", { points: pts.map(function (p) { return p.join(","); }).join(" "), fill: "none", stroke: GOLD, "stroke-width": 4, "stroke-linejoin": "round" }, s);
+    pts.forEach(function (p) { mk("line", { x1: 150, y1: 150, x2: p[0], y2: p[1], stroke: GOLD, "stroke-width": 2.5 }, s); });
+    mk("circle", { cx: 150, cy: 150, r: 12, fill: INK, stroke: GOLD, "stroke-width": 3, "class": "breathe" }, s);
+    pts.forEach(function (p, i) {
+      var c = (i >= 4 && i <= 6) ? GOLD : (i <= 2 ? GREEN : null);
+      mk("circle", { cx: p[0], cy: p[1], r: 14, fill: c || INK, stroke: c ? INK : GOLD, "stroke-width": 3 }, s);
+    });
+  })();
+
+  /* yote */
+  (function () {
+    var s = document.getElementById("yote");
+    var defs = mk("defs", {}, s);
+    var mkr = mk("marker", { id: "ah", viewBox: "0 0 10 10", refX: 8, refY: 5, markerWidth: 6, markerHeight: 6, orient: "auto-start-reverse" }, defs);
+    mk("path", { d: "M0 0 L10 5 L0 10 Z", fill: CREAM }, mkr);
+    var cell = 60;
+    for (var i = 0; i <= 6; i++) mk("line", { x1: i * cell, y1: 0, x2: i * cell, y2: 300, stroke: "#6b4328", "stroke-width": 2 }, s);
+    for (var j = 0; j <= 5; j++) mk("line", { x1: 0, y1: j * cell, x2: 360, y2: j * cell, stroke: "#6b4328", "stroke-width": 2 }, s);
+    function put(c, r, col) { return mk("circle", { cx: c * cell + 30, cy: r * cell + 30, r: 17, fill: col, stroke: INK, "stroke-width": 3 }, s); }
+    [[2,2],[0,4],[1,3],[3,4],[5,4]].forEach(function (p) { var e = put(p[0], p[1], GOLD); if (p[0] === 2 && p[1] === 2) e.setAttribute("class", "hop"); });
+    [[3,2],[1,1],[3,0],[5,1],[4,3]].forEach(function (p) { var e = put(p[0], p[1], GREEN); if (p[0] === 3 && p[1] === 2) e.setAttribute("class", "vanish"); });
+    mk("line", { x1: 2 * cell + 30 + 22, y1: 2 * cell + 30, x2: 4 * cell + 30 - 22, y2: 2 * cell + 30, stroke: CREAM, "stroke-width": 3, "stroke-dasharray": "6 6", "marker-end": "url(#ah)", "class": "march" }, s);
+    mk("circle", { cx: 4 * cell + 30, cy: 2 * cell + 30, r: 17, fill: "none", stroke: CREAM, "stroke-width": 2, "stroke-dasharray": "3 4" }, s);
+  })();
+
+  /* fanorona */
+  (function () {
+    var s = document.getElementById("fanorona");
+    var sp = 50, m = 25;
+    function X(i) { return m + sp * i; }
+    var ln = { stroke: "#a97a4b", "stroke-width": 2 };
+    for (var j = 0; j < 5; j++) mk("line", { x1: X(0), y1: X(j), x2: X(8), y2: X(j), stroke: ln.stroke, "stroke-width": 2 }, s);
+    for (var i = 0; i < 9; i++) mk("line", { x1: X(i), y1: X(0), x2: X(i), y2: X(4), stroke: ln.stroke, "stroke-width": 2 }, s);
+    for (var a = 0; a < 8; a++) for (var b = 0; b < 4; b++) {
+      if ((a + b) % 2 === 0) mk("line", { x1: X(a), y1: X(b), x2: X(a + 1), y2: X(b + 1), stroke: ln.stroke, "stroke-width": 2 }, s);
+      else mk("line", { x1: X(a + 1), y1: X(b), x2: X(a), y2: X(b + 1), stroke: ln.stroke, "stroke-width": 2 }, s);
+    }
+    function put(i, j, col) { mk("circle", { cx: X(i), cy: X(j), r: 15, fill: col, stroke: INK, "stroke-width": 3 }, s); }
+    for (var c = 0; c < 9; c++) { put(c, 0, GREEN); put(c, 1, GREEN); put(c, 3, GOLD); put(c, 4, GOLD); }
+    var mid = [GOLD, GREEN, GOLD, GREEN, null, GOLD, GREEN, GOLD, GREEN];
+    mid.forEach(function (col, c) { if (col) put(c, 2, col); });
+    mk("circle", { cx: X(4), cy: X(2), r: 15, fill: "none", stroke: CREAM, "stroke-width": 2, "stroke-dasharray": "3 4", "class": "breathe" }, s);
+  })();
+})();
+</script>
